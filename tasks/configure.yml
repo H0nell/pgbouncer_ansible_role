@@ -1,0 +1,15 @@
+---
+- name: template configuration file
+  become: yes
+  template:
+    src: pgbouncer.ini
+    dest: /etc/pgbouncer/pgbouncer.ini
+  notify: restart pgbouncer
+
+- name: template auth_user file
+  become: yes
+  template:
+    src: userlist.txt.j2
+    dest: /etc/pgbouncer/userlist.txt
+  notify: restart pgbouncer
+...

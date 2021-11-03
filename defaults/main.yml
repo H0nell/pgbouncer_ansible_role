@@ -1,0 +1,8 @@
+---
+# pgbouncer_package: pgbouncer-1.14
+pg_host: 10.0.0.1
+pg_port: 5432
+pg_dbname: postgres
+pg_auth_user: postgres
+pb_dbname: bouncer
+...

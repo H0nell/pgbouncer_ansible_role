@@ -1,0 +1,30 @@
+---
+- name: Install pgbouncer by YUM
+  become: yes
+  yum:
+    name: "{{ pgbouncer_package | default('pgbouncer') }}"
+    state: present
+    update_cache: yes
+  when: ansible_facts['os_family'] == 'RedHat'
+  tags:
+    - yum-package
+
+- name: Install pgbouncer by apt
+  become: yes
+  apt:
+    name: "{{ pgbouncer_package | default('pgbouncer') }}"
+    state: present
+    update_cache: yes
+  when: ansible_facts['os_family'] == 'Debian'
+  tags:
+    - apt-package
+
+- name: autoload pgbouncer by systemd
+  become: yes
+  service:
+    name: pgbouncer
+    state: started
+    enabled: yes
+  tags:
+    - pgbouncer-daemon
+...
